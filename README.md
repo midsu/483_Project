@@ -77,7 +77,7 @@ To get a local copy up and running follow these simple example steps.
 #### Installation
 1. Clone the repo
    ```
-   git clone https://github.com/midsu/CandleVision-.git
+   git clone https:-.git
    ```
 2. Install requiements
   ```
