@@ -84,8 +84,7 @@ To get a local copy up and running follow these simple example steps.
   pip install -e 
   ```
       
-#### Running the server:
-  ```venv\Scripts\activate```   
+#### Running the server:  
   ```uvicorn app.main:app --reload```
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
