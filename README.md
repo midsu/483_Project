@@ -8,7 +8,7 @@
 
 Hamid Suha - [📫](scuf) - hsuha@csu.fullerton.edu
 
-.... - [📫](scuf) - ....
+Saad Ansari - [📫](scuf) - Saadansari@csu.fullerton.edu
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
