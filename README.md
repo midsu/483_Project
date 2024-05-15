@@ -115,9 +115,9 @@ If you have a suggestion that would make this better, please fork the repo and c
 Don't forget to give the project a star! Thanks again!
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/CandleVision-`)
-3. Commit your Changes (`git commit -m 'Add some CandleVision-'`)
-4. Push to the Branch (`git push origin feature/CandleVision-`)
+2. Create your Feature Branch (`git checkout -b feature/CandleID-`)
+3. Commit your Changes (`git commit -m 'Add some CandleID-'`)
+4. Push to the Branch (`git push origin feature/CandleID-`)
 5. Open a Pull Request
 
 
