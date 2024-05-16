@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beginner</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="icon" type="image/png" href="/static/logo.png">
+
+  <script>
+    // Function to navigate to a GitHub URL
+    function navigateToGitHub() {
+      window.open("https://github.com/midsu/483_Project/tree/main", "_blank");
+    }
+    // Retrieve the interval parameter from the URL
+    function getIntervalFromUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('interval') || 'D'; // Default to 'D' if not provided
+    }
+
+    // Update the TradingView widget with the selected interval
+    function updateWidget(interval) {
+      const container = document.getElementById('tradingview-widget');
+      container.innerHTML = '';
+
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.async = true;
+      script.src = 'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';
+
+      const config = {
+        "width": 800,
+        "height": 600,
+        "symbol": "AMEX:SPY",
+        "interval": interval,
+        "timezone": "Etc/UTC",
+        "theme": "light",
+        "style": "1",
+        "locale": "en",
+        "hide_top_toolbar": false,
+        "enable_publishing": false,
+        "allow_symbol_change": false,
+        "save_image": true,
+        "calendar": false,
+        "hide_volume": true,
+        "container_id": "tradingview-widget",
+        "support_host": "https://www.tradingview.com"
+      };
+
+      script.innerHTML = JSON.stringify(config);
+      container.appendChild(script);
+    }
+
+    // Set the interval select dropdown to the current interval and reload the page with the new interval
+    function setAndReload(interval) {
+      const url = new URL(window.location.href);
+      url.searchParams.set('interval', interval);
+      window.location.href = url.toString();
+    }
+
+    // Call updateWidget using the interval from the URL query parameter
+    document.addEventListener('DOMContentLoaded', () => {
+      const currentInterval = getIntervalFromUrl();
+      document.getElementById('intervalSelect').value = currentInterval;
+      updateWidget(currentInterval);
+    });
+  </script>
+
+</head>
+<style> 
+  #tape{
+    position: absolute;
+    top: 0;
+  }
+  .content {
+    display: flex;
+    justify-content: center; /* Horizontally centers the content */
+    align-items: center;     /* Vertically centers the content */
+    flex-wrap: nowrap;       /* Prevents wrapping of items */
+    gap: 20px;               /* Adds space between the cards */
+  }
+    
+  body {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 30px;
+    margin: 0;
+    color: #224;
+    background: url('https://source.unsplash.com/E8Ufcyxz514/2400x1823') center / cover no-repeat fixed;
+  }
+  
+  .navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+  }
+  
+  .nav-link {
+    color: #007bff;
+  }
+  
+  
+  .card {
+    display: flex;
+    flex-direction: column; /* Aligns children vertically */
+    align-items: center;    /* Centers children horizontally */
+    justify-content: center;/* Centers children vertically */
+    width: 850px;            /* Adjusted from 120% to 100% */
+    height: 650px;
+    padding: 25%%;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+    margin-bottom: 20px;    /* Space between card and button */
+    margin-top: 20px;
+    }
+  
+  #detectButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.6);
+  }
+  #github_button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.6);
+    margin-top: 50px;
+  }
+  
+  #detectButton:hover {
+    background-color: #0056b3;
+  }
+  
+  .tradingview-widget-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* This can help if content overflows */
+
+  }
+
+  .card2 {
+    display: flex;
+    flex-direction: column; /* Aligns children vertically */
+    align-items: center;    /* Centers children horizontally */
+    justify-content: center;/* Centers children vertically */
+    width: 130%%;            /* Adjusted from 120% to 100% */
+    height: 100%%;
+    padding: 1px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+    margin-bottom: 20px;    /* Space between card and button */
+
+    overflow: hidden; 
+  }
+  .card3 {
+    display: flex;
+    flex-direction: column; /* Aligns children vertically */
+    align-items: center;    /* Centers children horizontally */
+    justify-content: center;/* Centers children vertically */
+    width: 130%%;            /* Adjusted from 120% to 100% */
+    height: 120%%;
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(15px);
+    margin-bottom: 20px;    /* Space between card and button */
+    margin: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 16px;
+    background: rgba(0, 0, 0, 0.1);
+  }
+  .rope-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 600px;
+    height: 50px;
+    padding: 10px 20px; /* Padding for aesthetic spacing */
+    background-color: #ddd;
+    border-radius: 25px;
+    margin-top: 20px;
+    overflow: hidden; /* Ensures nothing spills outside the container */
+  }
+  #dollar {
+    position: absolute;
+    font-size: 2rem;
+    transition: transform 1s ease-in-out;
+  }
+  .emoji {
+    position: absolute;
+    font-size: 2rem; /* Larger emojis for better visibility */
+  }
+  .bear {
+    right: 0; 
+  }
+  .bull {
+    left: 0;
+  }
+  .center {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+</style>
+<body>
+
+  <!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container" id=tape>
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+  "symbols": [
+    {
+      "proName": "FOREXCOM:SPXUSD",
+      "title": "S&P 500 Index"
+    },
+    {
+      "proName": "BITSTAMP:BTCUSD",
+      "title": "Bitcoin"
+    },
+    {
+      "proName": "BITSTAMP:ETHUSD",
+      "title": "Ethereum"
+    },
+    {
+      "description": "Tesla",
+      "proName": "NASDAQ:TSLA"
+    },
+    {
+      "description": "Apple",
+      "proName": "NASDAQ:AAPL"
+    },
+    {
+      "description": "Nvidia ",
+      "proName": "NASDAQ:NVDA"
+    },
+    {
+      "description": "Microsoft",
+      "proName": "NASDAQ:MSFT"
+    },
+    {
+      "description": "Amazon",
+      "proName": "NASDAQ:AMZN"
+    },
+    {
+      "description": "AMD",
+      "proName": "NASDAQ:AMD"
+    },
+    {
+      "description": "Meta",
+      "proName": "NASDAQ:META"
+    },
+    {
+      "description": "Google",
+      "proName": "NASDAQ:GOOGL"
+    },
+    {
+      "description": "Netflix",
+      "proName": "NASDAQ:NFLX"
+    },
+    {
+      "description": "Coin",
+      "proName": "NASDAQ:COIN"
+    }
+  ],
+  "showSymbolLogo": false,
+  "isTransparent": false,
+  "displayMode": "adaptive",
+  "colorTheme": "dark",
+  "locale": "en"
+}
+  </script>
+</div>
+
+
+<!-- TradingView Widget END -->
+
+
+<div class="content">
+  <button id="github_button" onclick="navigateToGitHub()">GitHub</button>
+
+    <!-- TradingView Widget BEGIN -->
+  <div class="card3">
+
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+  {
+  "interval": "1m",
+  "width": "800",
+  "isTransparent": false,
+  "height": "400",
+  "symbol": "NASDAQ:AAPL",
+  "showIntervalTabs": true,
+  "displayMode": "single",
+  "locale": "en",
+  "colorTheme": "light"
+}
+  </script>
+</div>
+</div>
+
+<!-- TradingView Widget END -->
+<label for="intervalSelect">Choose an interval:</label>
+        <select id="intervalSelect" onchange="updateWidget(this.value)">
+            <option value="5">5 Minutes</option>
+            <option value="H">1 Hour</option>
+            <option value="D">1 Day</option>
+        </select>
+        <button id="detectButton">Detect</button>
+
+      <div class="card">
+        <div class="tradingview-widget-container2">
+        <div class="tradingview-widget-container1" id="tradingview-widget">
+          <div class="tradingview-widget-container__widget" >
+
+        
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                {
+                "width": "1500",
+                "height": "1200",
+                "symbol": "AMEX:SPY",
+                "interval": "5",
+                "timezone": "Etc/UTC",
+                "theme": "light",
+                "style": "1",
+                "locale": "en",
+                "hide_top_toolbar": false,
+                "enable_publishing": false,
+                "allow_symbol_change": false,
+                "save_image": true,
+                "calendar": false,
+                "hide_volume": true,
+                "support_host": "https://www.tradingview.com"
+              }
+              </script>
+              </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="card2">
+        <img id="screenshotDisplay" alt="Screenshot will be displayed here">
+      </div>
+
+    </div>
+    <div class=card3>
+      <h2 id="patternName"></h2>
+      <img id="patternImage" src="" alt="Pattern Image">
+      <p id="patternDescription"></p>
+    </div>
+
+
+
+
+    <!-- JavaScript files -->
+        <script>
+
+          // Call this function to initially load the widget with a default interval
+            
+          
+      document.getElementById('detectButton').addEventListener('click', async function() {
+        try {
+          // Take Screenshot
+          let screenshotResponse = await fetch("/screenshot");
+          let screenshotData = await screenshotResponse.json();
+          if (screenshotData.message !== "Screenshot taken successfully") {
+            throw new Error('Screenshot capture failed.');
+          }
+    
+          // Crop Screenshot
+          const filename = "screenshot.png";
+          let cropResponse = await fetch(`/crop-screenshot/${filename}`, { method: 'POST' });
+          let cropData = await cropResponse.json();
+          // Detect objects
+          let detectResponse = await fetch('/detect/', { method: 'POST' });
+          let detectData = await detectResponse.json();
+          if (detectResponse.ok && detectData.image) {
+            document.getElementById('screenshotDisplay').src = `data:image/jpeg;base64,${detectData.image}`;
+    
+            if (detectData.patterns && detectData.patterns.length > 0) {
+              // Join all detected patterns into a single string
+              //let detectedPatternName = detectData.patterns.join(', ');
+              let detectedPatternName = detectData.patterns[0]; 
+              console.log(detectedPatternName)
+              
+              
+              let patternResponse = await fetch(`/patterns/${encodeURIComponent(detectedPatternName)}`, {
+                method: 'GET'
+              });
+              let patternData = await patternResponse.json();
+              document.getElementById('patternName').textContent = patternData.name;
+              document.getElementById('patternImage').src = patternData.image_url;
+              document.getElementById('patternDescription').textContent = patternData.description;
+              console.log('Description:', patternData.description); // Log the description
+              
+              
+              // Call the send-sms endpoint if detections were made
+              let smsResponse = await fetch('/send-sms/', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ 
+                  detected_pattern_name: detectedPatternName
+                })
+              });
+
+    
+              if (!smsResponse.ok) {
+                const errorData = await smsResponse.json();
+                console.error('SMS Notification Error:', errorData);
+                throw new Error('SMS notification failed: ' + JSON.stringify(errorData));
+              }
+    
+              const responseData = await smsResponse.json();
+              console.log('SMS Response:', responseData);
+              alert(`SMS sent! Message SID: ${responseData.sid}`);
+            } else {
+              console.log("No patterns detected.");
+            }
+          } else {
+            throw new Error('Detection failed: ' + detectData.detail);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error: ' + error.message);
+        }
+      });
+    
+    </script>
+    <script src="/static/scripts.js"></script>
+</body>
+</html>

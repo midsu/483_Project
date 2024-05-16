@@ -1,0 +1,35 @@
+version: "1"
+services:
+- type: web
+  name: nodejs-service
+  runtime: node
+  repo: https://github.com/Belalaskaik/CandleVision-
+  plan: starter
+  envVars:
+  - key: PUPPETEER_SKIP_DOWNLOAD
+    sync: false
+  - key: NODE_ENV
+    sync: false
+  region: oregon
+  buildCommand: |
+    apt-get update &&
+    apt-get install -y chromium-browser &&
+    npm install
+  startCommand: node capture.js
+  sizeGB: 1
+# Exported from Render on 2024-05-09T06:38:41Z
+- type: web
+  name: fastapi-app
+  runtime: python
+  repo: https://github.com/Belalaskaik/CandleVision-
+  plan: starter
+  envVars:
+  - key: PYTHONUNBUFFERED
+    sync: false
+  region: oregon
+  buildCommand: pip install -r requirements.txt
+  startCommand: uvicorn app.main:app --host 0.0.0.0 --port 10000
+  disk:
+    name: fastapi-storage
+    mountPath: /app/storage
+    sizeGB: 1
