@@ -77,7 +77,7 @@ To get a local copy up and running follow these simple example steps.
 #### Installation
 1. Clone the repo
    ```
-   git clone https:-.git
+   git clone https://github.com/midsu/483_Project.git
    ```
 2. Install requiements
   ```
